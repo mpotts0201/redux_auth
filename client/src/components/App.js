@@ -3,7 +3,7 @@ import logo from '../logo.svg';
 import '../App.css';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Login from './login/Login'
-import CreatureIndex from './creatures/CreatureIndex'
+import CreatureIndexContainer from '../containers/CreatureIndex.container'
 import { removeTokens } from '../utils/SessionHeaderUtils'
 
 
@@ -24,7 +24,7 @@ class App extends Component {
           <div>
             <Switch>
               <Route exact path='/login' component={Login} />
-              <Route exact path='/' component={CreatureIndex} />
+              <Route exact path='/' component={CreatureIndexContainer} />
             </Switch>
             {this.props.loggedIn ? <Redirect to='/' /> : <Redirect to='/login' />}
           </div>

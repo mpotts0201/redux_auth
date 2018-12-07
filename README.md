@@ -1,24 +1,13 @@
-# README
+# Practice App for redux implementation
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Deployment: https://peaceful-gorge-80164.herokuapp.com
 
-Things you may want to cover:
+Redux practice with:
 
-* Ruby version
+* User auth
 
-* System dependencies
+* Full CRUD 
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

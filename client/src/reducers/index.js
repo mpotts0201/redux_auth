@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import authReducer from './authReducer'
+import creatureReducer from './creatureReducer'
 
 export default combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    creatures: creatureReducer
 })

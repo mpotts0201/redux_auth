@@ -8,10 +8,7 @@ class AppContainer extends Component {
 
     componentDidMount(){
         this.props.signedIn()
-        if(this.props.loggedIn){
-            setAxiosDefaults()
 
-        }
         
     }
 

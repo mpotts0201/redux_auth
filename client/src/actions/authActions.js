@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { LOGIN, LOGIN_TRUE, LOGIN_FALSE } from './types';
-import { saveAuthTokens, userIsLoggedIn } from '../utils/SessionHeaderUtils'
+import { LOGIN, LOGIN_TRUE, LOGIN_FALSE, SIGN_UP } from './types';
+import { saveAuthTokens, userIsLoggedIn, setAxiosDefaults } from '../utils/SessionHeaderUtils'
 
 export const signIn = (payload) => {
     return (dispatch) => {
@@ -21,19 +21,36 @@ export const signIn = (payload) => {
 }
 
 export const signedIn = () => {
+    setAxiosDefaults()
     return (dispatch) => {
         const loggedIn = userIsLoggedIn()
         console.log(loggedIn)
         if (loggedIn) {
             dispatch({
-                type: LOGIN_TRUE,
+                type: LOGIN,
                 payload: loggedIn
             })
         }else{
             dispatch({
-                type: LOGIN_FALSE,
+                type: LOGIN,
                 payload: loggedIn
             })
         }
+    }
+}
+
+export const signUp = (payload) => {
+    return (dispatch) => {
+        axios.post('/auth', payload)
+        .then((res) => {
+            saveAuthTokens(res.headers)
+            const signedIn = userIsLoggedIn()
+            dispatch({
+                type: LOGIN,
+                payload: signedIn
+            })
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 }

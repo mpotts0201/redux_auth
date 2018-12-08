@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Login from './login/Login'
 import CreatureIndexContainer from '../containers/CreatureIndex.container'
 import { removeTokens } from '../utils/SessionHeaderUtils'
-
+import SignUp from '../components/login/SignUp'
 
 class App extends Component {
   render() {
@@ -25,6 +25,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/login' component={Login} />
               <Route exact path='/' component={CreatureIndexContainer} />
+              <Route exact path='/signUp' component={SignUp} />
             </Switch>
             {this.props.loggedIn ? <Redirect to='/' /> : <Redirect to='/login' />}
           </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { signIn } from '../../actions/authActions'
-
+import { Link } from 'react-router-dom'
 class Login extends Component {
 
     state = {
@@ -28,6 +28,7 @@ class Login extends Component {
     render() {
         return (
             <div>
+                <h3>Login</h3>
                 <form onSubmit={this.signIn}>
                     <div>
                         <label>Email </label>
@@ -39,15 +40,12 @@ class Login extends Component {
                     </div>
                     <button>Login</button>
                 </form>
+                <Link to='/signUp'>Sign up</Link>
             </div>
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        loggedIn: state.auth.loggedIn
-    }
-}
 
-export default connect(mapStateToProps, { signIn })(Login);
+
+export default connect(null, { signIn })(Login);

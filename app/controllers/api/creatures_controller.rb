@@ -15,21 +15,38 @@ class Api::CreaturesController < ApplicationController
     end
 
     def create 
-        @creature = Creature.new(creature_params)
+        @creatures = current_user.creatures
+        
+        @creature = Creature.create(creature_params)
+        puts '//////////////////////////////////////'
+        puts @creature
+        puts '//////////////////////////////////////'
+        
+        @creatures << @creature
 
-        @creature.save!
+        # @creatures.save
 
         render json: @creature
 
     end
 
     def update 
+        @creature = Creature.find(params[:id])
+        @creature.update(creature_params)
+
+        @creature.save!
+
+        render json: @creature
         
 
     end
 
     def destroy 
+        @creature = Creature.find(params[:id])
 
+        @creature.destroy
+
+        render json: @creature
     end
 
     private

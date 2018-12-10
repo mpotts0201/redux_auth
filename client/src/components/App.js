@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from '../logo.svg';
 import '../App.css';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Login from './login/Login'
 import CreatureIndexContainer from '../containers/CreatureIndex.container'
-import { removeTokens } from '../utils/SessionHeaderUtils'
 import SignUp from '../components/login/SignUp'
 
-class App extends Component {
-  render() {
-    console.log(this.props.loggedIn)
+export default function App (props) {
+  
     return (
       <div className="App">
         <header className="App-header">
@@ -17,7 +15,7 @@ class App extends Component {
           <p>
             Creature Collector
           </p>
-          <button onClick={this.props.removeTokens}>Sign Out</button>
+          <button onClick={props.removeTokens}>Sign Out</button>
 
         </header>
         <BrowserRouter>
@@ -27,12 +25,11 @@ class App extends Component {
               <Route exact path='/' component={CreatureIndexContainer} />
               <Route exact path='/signUp' component={SignUp} />
             </Switch>
-            {this.props.loggedIn ? <Redirect to='/' /> : <Redirect to='/login' />}
+            {props.loggedIn ? <Redirect to='/' /> : <Redirect to='/login' />}
           </div>
         </BrowserRouter>
       </div>
     );
   }
-}
 
-export default App;
+

@@ -20,7 +20,6 @@ export function setAxiosDefaults() {
     axios.defaults.headers.expiry = localStorage.getItem('expiry')
     axios.defaults.headers.uid = localStorage.getItem('uid')
 
-    console.log('Axios defaults set')
 
 }
 

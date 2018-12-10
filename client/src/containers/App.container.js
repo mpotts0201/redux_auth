@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { signedIn } from '../actions/authActions'
-import { removeTokens, setAxiosDefaults } from '../utils/SessionHeaderUtils'
+import { removeTokens } from '../utils/SessionHeaderUtils'
 import App from '../components/App'
 
 class AppContainer extends Component {
@@ -22,7 +22,7 @@ class AppContainer extends Component {
     render() {
         return (
             <div>
-                <App removeTokens={this.removeTokens} loggedIn={this.props.loggedIn} />
+                <App {...this.props} removeTokens={this.removeTokens} />
             </div>
         );
     }

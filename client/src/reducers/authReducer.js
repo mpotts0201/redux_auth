@@ -1,4 +1,4 @@
-import { LOGIN, LOGIN_TRUE, LOGIN_FALSE, SIGN_UP } from '../actions/types'
+import { LOGIN } from '../actions/types'
 
 const initialState = {
     auth: []

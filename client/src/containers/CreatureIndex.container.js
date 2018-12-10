@@ -14,6 +14,20 @@ class CreatureIndexContainer extends Component {
     }
 
 
+    componentDidUpdate(prevProps){
+        if(prevProps.creature !== this.props.creature){
+            this.props.fetchCreatures()
+            console.log(prevProps)
+        }
+        // if(prevProps.creatures !== this.props.creatures){
+        //     this.props.fetchCreatures()
+        //     console.log(prevProps)
+
+        // }
+    }
+
+
+
 
     render() {
         return (
@@ -26,7 +40,8 @@ class CreatureIndexContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        creatures: state.creatures.items
+        creatures: state.creatures.items,
+        creature: state.creatures.item
     }
 }
 

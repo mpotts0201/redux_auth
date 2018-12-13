@@ -13,17 +13,15 @@ class CreatureIndexContainer extends Component {
 
     }
 
-
+    // In my use case, whenever I dispatch an action to edit a creature, it maps a new prop of the edited creature to this container.  
+    // This is causing my container to rerender props everytime a change in this specific prop occurs.
+    // Learning the purpose of redux as more of a model one could just change state, and make api calls later (in bigger applications)
     componentDidUpdate(prevProps){
         if(prevProps.creature !== this.props.creature){
             this.props.fetchCreatures()
             console.log(prevProps)
         }
-        // if(prevProps.creatures !== this.props.creatures){
-        //     this.props.fetchCreatures()
-        //     console.log(prevProps)
 
-        // }
     }
 
 

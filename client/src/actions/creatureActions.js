@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FETCH_CREATURES, UPDATE_CREATURE, CREATE_CREATURE } from '../actions/types'
+import { FETCH_CREATURES, UPDATE_CREATURE, CREATE_CREATURE, DELETE_CREATURE } from '../actions/types'
 
 export const fetchCreatures = () => {
     return (dispatch) => {
@@ -15,10 +15,11 @@ export const fetchCreatures = () => {
     }
 }
 
-const updateSuccess = (payload) => {
+const updateSuccess = (payload, id) => {
     return {
         type: UPDATE_CREATURE,
-        payload: payload
+        payload, 
+        id
     }
 }
 
@@ -26,7 +27,7 @@ export const updateCreature = (payload, id) => {
     return (dispatch) => {
         axios.put(`/api/creatures/${id}`, payload)
         .then((res) => {
-            dispatch(updateSuccess(payload))
+            dispatch(updateSuccess(res.data, id))
         }).catch((error) => {
             console.log(error)
         })
@@ -37,7 +38,7 @@ export const createCreature = (payload) => {
     return dispatch => {
         axios.post('/api/creatures', payload)
         .then((res) => {
-            dispatch(createCreatureSuccess(payload))
+            dispatch(createCreatureSuccess(res.data))
         }).catch(error => console.log(error))
     }
 }
@@ -45,6 +46,21 @@ export const createCreature = (payload) => {
 const createCreatureSuccess = (payload) => {
     return {
         type: CREATE_CREATURE,
-        payload: payload
+        payload
+    }
+}
+
+const deleteCreatureSuccess = id => {
+    return {
+        type: DELETE_CREATURE,
+        id
+    }
+}
+
+export const deleteCreature = id => {
+    return dispatch => {
+        axios.delete(`/api/creatures/${id}`)
+        .then(() => dispatch(deleteCreatureSuccess(id)))
+        .catch((error) => console.log(error))
     }
 }

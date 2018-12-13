@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EditCreature from './EditCreature'
 import { connect } from 'react-redux'
-import { fetchCreatures } from '../../actions/creatureActions'
+import { deleteCreature } from '../../actions/creatureActions'
 import NewCreature from './NewCreature';
 
 const styles = {
@@ -28,7 +28,17 @@ class CreatureIndex extends Component {
         this.setState({ showCreate: !this.state.showCreate })
     }
 
-    
+    updateCreature = () => {
+        const payload = {
+            name: 'C',
+            description: 'Test',
+            img_url: 'Test',
+        
+        }
+        this.props.updateCreature(payload, 30)
+    }
+
+
 
     render() {
         let data = []
@@ -47,6 +57,7 @@ class CreatureIndex extends Component {
                                     <img onClick={this.handleToggle} style={{ width: 200, height: 200, borderRadius: '50%' }} src={creature.img_url} alt='Broken link' />
                                     <h3>{creature.name}</h3>
                                     <h6>{creature.description}</h6>
+                                    <button onClick={() => this.props.deleteCreature(creature.id)}>Delete</button>
                                 </div>
 
                         }
@@ -58,6 +69,7 @@ class CreatureIndex extends Component {
 
         return (
             <div>
+                {/* <button onClick={this.updateCreature}>Test Update</button> */}
                 <button onClick={this.createToggle}>Add Creature</button>
                 {
                     this.state.showCreate
@@ -75,10 +87,6 @@ class CreatureIndex extends Component {
 
 }
 
-const mapStateToProps = state => {
-    return {
-        creatures: state.creatures.items
-    }
-}
 
-export default CreatureIndex;
+
+export default connect(null, { deleteCreature })(CreatureIndex);
